@@ -1,5 +1,5 @@
 @php
-    $base = "h-10 px-6 flex gap-2 items-center justify-center text-sm rounded-full font-medium cursor-pointer";
+    $base = "h-10 px-6 flex gap-2 items-center justify-center text-sm tracking-wide rounded-full font-medium cursor-pointer";
 
     $styles = match ($type) {
         "filled" => "bg-[#D0BCFF] text-[#381E72] hover:bg-[#D0BCFF]/80 min-w-14",

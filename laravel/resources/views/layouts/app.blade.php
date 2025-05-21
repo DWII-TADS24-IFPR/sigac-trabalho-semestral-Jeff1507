@@ -9,7 +9,7 @@
 <body class="bg-zinc-900">
     <nav class="bg-zinc-800">
         <div class="container mx-auto px-8 py-4 text-gray-50 flex items-center justify-between ">
-            <a href="#" class="font-bold text-2xl tracking-tight leading-none whitespace-nowrap flex items-center">
+            <a href="#" class="font-bold text-2xl tracking-wider leading-none whitespace-nowrap flex items-center">
                 SIGAC
             </a>
             <div class="flex gap-4 items-center justify-between">
