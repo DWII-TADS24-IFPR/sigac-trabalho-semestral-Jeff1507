@@ -9,6 +9,10 @@ class Eixo extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $table = 'eixos';
     protected $fillable = ['nome'];
+
+    public function curso() {
+        return $this->hasMany(Curso::class);
+    }
 }
