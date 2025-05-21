@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Nivel extends Model
+class Eixo extends Model
 {
     use HasFactory;
     use SoftDeletes;
