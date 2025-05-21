@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome')->unique();
+            $table->string('sigla')->unique();
+            $table->float('total_horas');
+            $table->unsignedBigInteger('nivel_id');
+            $table->unsignedBigInteger('eixo_id');
+            $table->foreign('nivel_id')->references('id')->on('niveis')->onDelete('cascade');
+            $table->foreign('eixo_id')->references('id')->on('eixos')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

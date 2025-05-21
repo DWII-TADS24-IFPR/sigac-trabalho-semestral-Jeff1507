@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('turmas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('curso_id');
+            $table->foreign('curso_id')->references(columns: 'id')->on('cursos')->onDelete('cascade');
+            $table->integer('ano');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

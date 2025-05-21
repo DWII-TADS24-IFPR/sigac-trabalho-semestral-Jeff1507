@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('declaracoes', function (Blueprint $table) {
             $table->id();
+            $table->string('hash');
+            $table->dateTime('data');
+            $table->unsignedBigInteger('aluno_id');
+            $table->unsignedBigInteger('comprovante_id');
+            $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
+            $table->foreign('comprovante_id')->references('id')->on('comprovantes')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

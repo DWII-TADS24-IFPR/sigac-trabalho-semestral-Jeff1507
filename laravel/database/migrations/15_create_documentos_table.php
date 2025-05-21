@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
+            $table->string('url');
+            $table->text('descricao')->nullable();
+            $table->float('horas_in');
+            $table->string('status');
+            $table->text('comentario')->nullable();
+            $table->float('horas_out');
+            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('categoria_id')->references(columns: 'id')->on('categorias')->onDelete('cascade');
+            $table->foreign('user_id')->references(columns: 'id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

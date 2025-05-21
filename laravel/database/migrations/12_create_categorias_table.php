@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
+            $table->string('nome')->unique();
+            $table->float('maximo_horas');
+            $table->unsignedBigInteger('curso_id');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
