@@ -38,9 +38,9 @@
             @endif
         </div>
 
-            <x-button type="submit" class="w-full">
-                {{ __('Entrar') }}
-            </x-button>
+        <x-button type="submit" class="w-full">
+            {{ __('Entrar') }}
+        </x-button>
         
     </form>
 </x-guest-layout>
