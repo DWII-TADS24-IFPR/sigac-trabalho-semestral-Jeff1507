@@ -28,7 +28,7 @@
         <!-- Remember Me -->
         <div class="flex items-center justify-between w-full">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded-sm bg-transparent border-white text-[#D0BCFF] shadow-sm focus:ring-[#D0BCFF] dark:focus:ring-offset-gray-800" name="remember">
+                <input id="remember_me" type="checkbox" class="rounded-sm bg-transparent border-white text-[#4A4458] shadow-sm focus:ring-[#D0BCFF] focus:ring-offset-zinc-800" name="remember">
                 <span class="ms-2 text-sm text-white">{{ __('Lembre-se de mim') }}</span>
             </label>
             @if (Route::has('password.request'))
@@ -41,6 +41,10 @@
         <x-button type="submit" class="w-full">
             {{ __('Entrar') }}
         </x-button>
+
+        <x-link href="{{ route('register') }}">
+            {{ __('Criar uma conta') }}
+        </x-link>
         
     </form>
 </x-guest-layout>
