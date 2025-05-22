@@ -20,11 +20,11 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'nome',
+        'name',
         'email',
-        'senha',
+        'password',
         'role_id',
-        'curso_id'
+        //'curso_id'
     ];
 
     /**
@@ -54,9 +54,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function curso() {
+    /*public function curso() {
         return $this->belongsTo(Curso::class);
-    }
+    }*/
 
     public function aluno() {
         return $this->hasOne(Aluno::class);
