@@ -13,10 +13,10 @@
                 SIGAC
             </a>
             <div class="flex gap-4 items-center justify-between">
-                <x-button type="outlined">
+                <x-button variant="outlined">
                     Acesse sua conta
                 </x-button>
-                <x-button type="filled">
+                <x-button variant="filled">
                     Crie uma conta
                 </x-button>
             </div>

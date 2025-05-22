@@ -1,7 +1,7 @@
 @php
     $base = "h-10 px-6 flex gap-2 items-center justify-center text-sm tracking-wide rounded-full font-medium cursor-pointer";
 
-    $styles = match ($type) {
+    $styles = match ($variant) {
         "filled" => "bg-[#D0BCFF] text-[#381E72] hover:bg-[#D0BCFF]/80 min-w-14",
         "elevated" => "bg-[#1D1B20] text-[#D0BCFF] hover:bg-[#1D1B20]/80 shadow-sm",
         "outlined" => "border border-[#49454F] text-[#CAC4D0] hover:bg-[#322F35]/80 min-w-14",

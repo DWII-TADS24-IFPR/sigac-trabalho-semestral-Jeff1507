@@ -20,7 +20,7 @@ class NivelController extends Controller
      */
     public function create()
     {
-        //
+        return view('nivel.create');
     }
 
     /**
@@ -28,7 +28,9 @@ class NivelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['nome'=>'required | string | min:3']);
+        Nivel::create($request->all());
+        return redirect()->route('nivel.index')->with('Sucesso', 'Nível criado com sucesso!');
     }
 
     /**

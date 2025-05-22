@@ -11,11 +11,11 @@ class Button extends Component
     /**
      * Create a new component instance.
      */
-    public $type;
+    public $variant;
     public $icon;
-    public function __construct($type = "filled", $icon = null)
+    public function __construct($variant = "filled", $icon = null)
     {
-        $this->type = $type;
+        $this->variant = $variant;
         $this->icon = $icon;
     }
 

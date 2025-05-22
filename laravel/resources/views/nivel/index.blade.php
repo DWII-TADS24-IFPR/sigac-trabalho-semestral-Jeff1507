@@ -8,7 +8,7 @@
             <h1 class="text-2xl text-white font-bold tracking-wider">
                 Níveis de Ensino
             </h1>
-            <x-button type="tonal">
+            <x-button variant="tonal" onclick="window.location.href='{{ route('nivel.create') }}'">
                 Adicionar Nível
             </x-button>
         </div>
