@@ -5,14 +5,16 @@
         </h2>
     </x-slot>
     <section class="flex items-center justify-center">
-        <form action="{{ route('nivel.store') }}" method="POST" class="w-full sm:w-96 shadow-sm sm:border border-[#49454F] flex flex-col gap-8 px-6 py-4">
+        <form action="{{ route('nivel.update', $nivel->id) }}" method="POST" class="w-full sm:w-96 shadow-sm sm:border border-[#49454F] flex flex-col gap-8 px-6 py-4">
             @csrf
+            @method('PUT')
+
             <h1 class="text-2xl font-medium text-white tracking-wider">
-                Novo Nível de Ensino
+                Editar Nível de Ensino
             </h1>
             <div class="w-full flex flex-col space-y-1.5">
                 <x-input-label for="nome" :value="__('Nome do nível')" />
-                <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus />
+                <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" value="{{ old('nome', $nivel->nome) }}" required autofocus />
                 <x-input-error :messages="$errors->get('nome')" class="mt-2" />
             </div>
             <div class="w-full flex items-center justify-end gap-4">
@@ -20,7 +22,7 @@
                     Voltar
                 </x-button>
                 <x-button type="submit">
-                    Adicionar
+                    Atualizar
                 </x-button>
             </div>
         </form>

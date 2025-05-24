@@ -30,7 +30,7 @@ class NivelController extends Controller
     {
         $request->validate(['nome'=>'required | string | min:3']);
         Nivel::create($request->all());
-        return redirect()->route('nivel.index')->with('Sucesso', 'Nível criado com sucesso!');
+        return redirect()->route('nivel.index')->with('success', 'Nível criado com sucesso!');
     }
 
     /**
@@ -46,7 +46,8 @@ class NivelController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $nivel = Nivel::findOrFail($id);
+        return view('nivel.edit')->with(['nivel'=>$nivel]);
     }
 
     /**
@@ -54,7 +55,9 @@ class NivelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(['nome'=>'required | string | min:3']);
+        Nivel::findOrFail($id)->update($request->all());
+        return redirect()->route('nivel.index')->with('success', 'Nível atualizado com sucesso!');
     }
 
     /**
@@ -62,6 +65,9 @@ class NivelController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $nivel = Nivel::findOrFail($id);
+        $nivel->delete();
+
+        return redirect()->route('nivel.index')->with('success', 'Nível removido com sucesso!');
     }
 }

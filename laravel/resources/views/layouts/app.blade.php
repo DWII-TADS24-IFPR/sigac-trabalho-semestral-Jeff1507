@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased min-h-screen">
         <div class="min-h-screen bg-zinc-900">
             @include('layouts.navigation')
 
@@ -29,7 +29,7 @@
             -->
 
             <!-- Page Content -->
-            <main>
+            <main class="container mx-auto px-2 sm:px-8 max-w-5xl py-8">
                 {{ $slot }}
             </main>
         </div>
