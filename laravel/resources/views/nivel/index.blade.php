@@ -54,29 +54,6 @@
                                         Editar
                                     </x-link>
                                     <x-delete-button :action="route('nivel.destroy', $nivel->id)" modalId="delete-nivel-{{ $nivel->id }}"/>
-                                    <!--
-                                    <x-button type="submit" variant="text" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-nivel-deletion')">
-                                        Remover
-                                    </x-button>
-                                    <x-modal name="confirm-nivel-deletion" focusable>
-                                        <div class="p-6 flex flex-col gap-4">
-                                            <h2 class="text-xl font-medium tracking-wide">
-                                                Tem certeza que deseja deletar esse item?
-                                            </h2>
-                                            <p class="text-sm text-zinc-400">
-                                                Ao excluir esse item voce tambem removera todos os outros items relacionados
-                                            </p>
-                                            <form action="" class="w-full flex gap-2 items-center justify-end">
-                                                <x-button type="button" variant="text" x-on:click="$dispatch('close')">
-                                                    Cancelar
-                                                </x-button>
-                                                <x-button type="submit">
-                                                    Excluir
-                                                </x-button>
-                                            </form>
-                                        </div>
-                                    </x-modal>
-                                -->
                                 </td>
                             </tr>
                         @endforeach
