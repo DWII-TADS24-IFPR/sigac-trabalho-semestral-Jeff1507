@@ -55,7 +55,7 @@
                                     <x-link href="{{ route('curso.show', $curso->id) }}" class="text-blue-300">
                                         Ver
                                     </x-link>
-                                    <x-link>
+                                    <x-link href="{{ route('curso.edit', $curso->id) }}">
                                         Editar
                                     </x-link>
                                     <x-link class="text-red-400">

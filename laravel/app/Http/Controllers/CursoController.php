@@ -58,7 +58,11 @@ class CursoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $curso = Curso::with(['nivel', 'eixo'])->findOrFail($id);
+        $niveis = Nivel::all();
+        $eixos = Eixo::all();
+
+        return view('curso.edit')->with(['curso'=>$curso, 'niveis'=>$niveis, 'eixos'=>$eixos]);
     }
 
     /**
@@ -66,7 +70,16 @@ class CursoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|min:3',
+            'sigla' => 'required|string|min:2',
+            'total_horas' => 'required|numeric|min:3',
+            'nivel_id' => 'required|exists:niveis,id',
+            'eixo_id' => 'required|exists:eixos,id',
+        ]);
+
+        $curso = Curso::findOrFail($id)->update($request->all());
+        return redirect()->route('curso.index')->with('success', 'Curso atualizado com sucesso!');
     }
 
     /**

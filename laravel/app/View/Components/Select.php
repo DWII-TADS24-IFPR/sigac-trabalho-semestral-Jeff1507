@@ -17,7 +17,8 @@ class Select extends Component
     public $label;
     public $valueField;
     public $textField;
-    public function __construct($options, $name, $label = null, $id = null, $valueField = 'id', $textField = 'nome')
+    public $selected;
+    public function __construct($options, $name, $label = null, $id = null, $valueField = 'id', $textField = 'nome', $selected = null)
     {
         $this->options = $options;
         $this->name = $name;
@@ -25,6 +26,7 @@ class Select extends Component
         $this->label = $label;
         $this->valueField = $valueField;
         $this->textField = $textField;
+        $this->selected = $selected;
     }
 
     /**
