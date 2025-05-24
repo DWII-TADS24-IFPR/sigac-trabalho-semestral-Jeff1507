@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
                         {{ __('Níveis de Ensino') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                    <x-nav-link :href="route('eixo.index')" :active="request()->routeIs('eixo.index')">
                         {{ __('Eixos') }}
                     </x-nav-link>
                     <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
@@ -94,7 +94,7 @@
             <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
                 {{ __('Níveis de Ensino') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+            <x-responsive-nav-link :href="route('eixo.index')" :active="request()->routeIs('eixo.index')">
                 {{ __('Eixos') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
