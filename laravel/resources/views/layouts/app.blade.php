@@ -29,7 +29,7 @@
             -->
 
             <!-- Page Content -->
-            <main class="container mx-auto px-2 sm:px-8 max-w-5xl py-8">
+            <main class="container mx-auto px-2 sm:px-8 max-w-6xl py-8">
                 {{ $slot }}
             </main>
         </div>

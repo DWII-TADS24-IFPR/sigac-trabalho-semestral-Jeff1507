@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EixoController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\ProfileController;
@@ -17,6 +18,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('/nivel', NivelController::class);
     Route::resource('/eixo', EixoController::class);
+    Route::resource('/curso', CursoController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

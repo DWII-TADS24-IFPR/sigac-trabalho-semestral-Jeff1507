@@ -28,7 +28,7 @@ class NivelController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['nome'=>'required | string | min:3']);
+        $request->validate(['nome'=>'required|string|min:3']);
         Nivel::create($request->all());
         return redirect()->route('nivel.index')->with('success', 'Nível criado com sucesso!');
     }
@@ -55,7 +55,7 @@ class NivelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(['nome'=>'required | string | min:3']);
+        $request->validate(['nome'=>'required|string|min:3']);
         Nivel::findOrFail($id)->update($request->all());
         return redirect()->route('nivel.index')->with('success', 'Nível atualizado com sucesso!');
     }

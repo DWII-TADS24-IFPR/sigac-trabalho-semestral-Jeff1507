@@ -1,18 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Curso;
 use App\Models\Eixo;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 
-class EixoController extends Controller
+class CursoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $eixos = Eixo::all();
-        return view('eixo.index')->with(['eixos'=>$eixos]);
+        $cursos = Curso::all();
+        return view('curso.index')->with(['cursos'=>$cursos]);
     }
 
     /**
@@ -20,7 +23,9 @@ class EixoController extends Controller
      */
     public function create()
     {
-        return view('eixo.create');
+        $niveis = Nivel::all();
+        $eixos = Eixo::all();
+        return view('curso.create')->with(['niveis' => $niveis, 'eixos' => $eixos]);
     }
 
     /**
@@ -28,9 +33,15 @@ class EixoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['nome'=>'required|string|min:3']);
-        Eixo::create($request->all());
-        return redirect()->route('eixo.index')->with('success', 'Eixo criado com sucesso!');
+        $request->validate([
+            'nome' => 'required|string|min:3',
+            'sigla' => 'required|string|min:2',
+            'total_horas' => 'required|numeric|min:3',
+            'nivel_id' => 'required|exists:niveis,id',
+            'eixo_id' => 'required|exists:eixos,id',
+        ]);
+        Curso::create($request->all());
+        return redirect()->route('curso.index')->with('success', 'Curso criado com sucesso!');
     }
 
     /**
@@ -38,7 +49,8 @@ class EixoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $curso = Curso::all();
+        return view('curso.show')->with(['curso' => $curso]);
     }
 
     /**
@@ -46,8 +58,7 @@ class EixoController extends Controller
      */
     public function edit(string $id)
     {
-        $eixo = Eixo::findOrFail($id);
-        return view('eixo.edit')->with(['eixo'=>$eixo]);
+        //
     }
 
     /**
@@ -55,9 +66,7 @@ class EixoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(['nome'=>'required|string|min:3']);
-        Eixo::findOrFail($id)->update($request->all());
-        return redirect()->route('eixo.index')->with('success', 'Eixo atualizado com sucesso!');
+        //
     }
 
     /**
@@ -65,9 +74,6 @@ class EixoController extends Controller
      */
     public function destroy(string $id)
     {
-        $eixo = Eixo::findOrFail($id);
-        $eixo->delete();
-
-        return redirect()->route('eixo.index')->with('success', 'Eixo removido com sucesso!');
+        //
     }
 }

@@ -13,7 +13,7 @@
                 Editar Nível de Ensino
             </x-title>
             <div class="w-full flex flex-col space-y-1.5">
-                <x-input-label for="nome" :value="__('Nome do nível')" />
+                <x-input-label for="nome" :value="__('Nome do Nível')" />
                 <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" value="{{ old('nome', $nivel->nome) }}" required autofocus />
                 <x-input-error :messages="$errors->get('nome')" class="mt-2" />
             </div>
