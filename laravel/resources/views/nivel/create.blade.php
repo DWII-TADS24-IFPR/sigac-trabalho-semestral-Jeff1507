@@ -7,9 +7,9 @@
     <section class="flex items-center justify-center">
         <form action="{{ route('nivel.store') }}" method="POST" class="w-full sm:w-96 shadow-sm sm:border border-[#49454F] flex flex-col gap-8 px-6 py-4">
             @csrf
-            <h1 class="text-2xl font-medium text-white tracking-wider">
+            <x-title>
                 Novo Nível de Ensino
-            </h1>
+            </x-title>
             <div class="w-full flex flex-col space-y-1.5">
                 <x-input-label for="nome" :value="__('Nome do nível')" />
                 <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus />

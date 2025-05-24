@@ -9,9 +9,9 @@
             @csrf
             @method('PUT')
 
-            <h1 class="text-2xl font-medium text-white tracking-wider">
+            <x-title>
                 Editar Nível de Ensino
-            </h1>
+            </x-title>
             <div class="w-full flex flex-col space-y-1.5">
                 <x-input-label for="nome" :value="__('Nome do nível')" />
                 <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" value="{{ old('nome', $nivel->nome) }}" required autofocus />

@@ -10,9 +10,9 @@
             </x-not-found>
         @else
         <div class="flex items-center justify-between">
-            <h1 class="text-2xl text-white font-bold tracking-wider">
+            <x-title>
                 Níveis de Ensino
-            </h1>
+            </x-title>
             <x-button onclick="window.location.href='{{ route('nivel.create') }}'">
                 Adicionar Nível
             </x-button>

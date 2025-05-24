@@ -18,6 +18,21 @@
                     <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
                         {{ __('Níveis de Ensino') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                        {{ __('Eixos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                        {{ __('Cursos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                        {{ __('Turmas') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                        {{ __('Alunos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                        {{ __('Categorias') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -78,6 +93,21 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
                 {{ __('Níveis de Ensino') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                {{ __('Eixos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                {{ __('Cursos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                {{ __('Turmas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                {{ __('Alunos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                {{ __('Categorias') }}
             </x-responsive-nav-link>
         </div>
 
