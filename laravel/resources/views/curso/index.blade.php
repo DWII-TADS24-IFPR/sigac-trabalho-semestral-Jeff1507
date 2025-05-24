@@ -52,7 +52,7 @@
                                     {{ $curso->eixo->nome }}
                                 </td>
                                 <td class="px-6 py-4 inline-flex items-center gap-8">
-                                    <x-link class="text-blue-300">
+                                    <x-link href="{{ route('curso.show', $curso->id) }}" class="text-blue-300">
                                         Ver
                                     </x-link>
                                     <x-link>

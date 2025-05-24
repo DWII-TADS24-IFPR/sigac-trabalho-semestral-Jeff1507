@@ -49,7 +49,7 @@ class CursoController extends Controller
      */
     public function show(string $id)
     {
-        $curso = Curso::all();
+        $curso = Curso::with(['nivel', 'eixo'])->findOrFail($id);
         return view('curso.show')->with(['curso' => $curso]);
     }
 
