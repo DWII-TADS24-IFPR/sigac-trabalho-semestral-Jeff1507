@@ -58,9 +58,7 @@
                                     <x-link href="{{ route('curso.edit', $curso->id) }}">
                                         Editar
                                     </x-link>
-                                    <x-link class="text-red-400">
-                                        Remover
-                                    </x-link>
+                                    <x-delete-button :action="route('curso.destroy', $curso->id)" modalId="delete-curso-{{ $curso->id }}"/>
                                 </td>
                             </tr>
                         @endforeach

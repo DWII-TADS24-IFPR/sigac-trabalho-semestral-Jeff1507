@@ -42,7 +42,7 @@
                     Voltar
                 </x-button>
                 <x-button type="submit">
-                    Adicionar
+                    Atualizar
                 </x-button>
             </div>
         </form>
