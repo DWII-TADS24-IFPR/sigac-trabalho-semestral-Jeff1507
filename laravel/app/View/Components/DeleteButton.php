@@ -12,13 +12,11 @@ class DeleteButton extends Component
      * Create a new component instance.
      */
     public string $action;
-    public ?string $class;
-    public ?string $confirm;
-    public function __construct(string $action, ?string $class = null, ?string $confirm = null)
+    public string $modalId;
+    public function __construct(string $action, string $modalId)
     {
         $this->action = $action;
-        $this->class = $class;
-        $this->confirm = $confirm;
+        $this->modalId = $modalId;
     }
 
     /**
@@ -26,6 +24,6 @@ class DeleteButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.delete-button');
+        return view('components.delete-button')->with(['modalId'=>$this->modalId]);
     }
 }
