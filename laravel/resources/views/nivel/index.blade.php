@@ -4,6 +4,9 @@
         @if ($niveis->isEmpty())
             <x-not-found>
                 Nenhum Nível de Ensino cadastrado!
+                <x-button onclick="window.location.href='{{ route('nivel.create') }}'">
+                    Criar novo nível
+                </x-button>
             </x-not-found>
         @else
         <div class="flex items-center justify-between">
@@ -50,9 +53,7 @@
                                     <x-link href="{{ route('nivel.edit', $nivel->id) }}">
                                         Editar
                                     </x-link>
-                                    <x-delete-button :action="route('nivel.destroy', $nivel->id)">
-                                        Remover
-                                    </x-delete-button>
+                                    <x-delete-button :action="route('nivel.destroy', $nivel->id)" label="Remover" />
                                 </td>
                             </tr>
                         @endforeach
