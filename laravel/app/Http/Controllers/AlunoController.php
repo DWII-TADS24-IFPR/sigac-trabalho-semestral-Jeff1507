@@ -123,7 +123,7 @@ class AlunoController extends Controller
     public function destroy(string $id)
     {
         $aluno = Aluno::with(['user'])->findOrFail($id);
-        $aluno->user()->delete();
+        $aluno->user->delete();
         $aluno->delete();
 
         return redirect()->route('aluno.index')->with('success', 'Aluno excluido com sucesso!');
