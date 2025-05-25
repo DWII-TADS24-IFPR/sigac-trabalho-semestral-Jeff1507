@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Aluno;
+use App\Models\Curso;
+use App\Models\Turma;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +22,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $cursos = Curso::all();
+        $turmas = Turma::all();
+        return view('auth.register')->with(['cursos'=>$cursos, 'turmas'=>$turmas]);
     }
 
     /**
@@ -33,6 +38,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'cpf' => ['required', 'string', 'min:3'],
+            'curso_id' => ['required', 'exists:cursos,id'],
+            'turma_id' => ['required', 'exists:turmas,id'],
         ]);
 
         $user = User::create([
@@ -40,6 +48,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => 2,
+        ]);
+
+        Aluno::create([
+            'cpf' => $request->cpf,
+            'user_id' => $user->id,
+            'curso_id' => $request->curso_id,
+            'turma_id' => $request->turma_id,
         ]);
 
         event(new Registered($user));
