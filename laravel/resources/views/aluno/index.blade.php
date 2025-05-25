@@ -52,7 +52,9 @@
                                     {{ $aluno->turma->ano }}
                                 </td>
                                 <td class="px-6 py-4 inline-flex items-center gap-8">
-                                   
+                                   <x-link href="{{ route('aluno.show', $aluno->id) }}" class="text-blue-300">
+                                        Ver
+                                   </x-link>
                                 </td>
                             </tr>
                         @endforeach
