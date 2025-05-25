@@ -30,7 +30,7 @@
                     <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
                         {{ __('Alunos') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                    <x-nav-link :href="route('categoria.index')" :active="request()->routeIs('categoria.index')">
                         {{ __('Categorias') }}
                     </x-nav-link>
                 </div>
@@ -106,7 +106,7 @@
             <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
                 {{ __('Alunos') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+            <x-responsive-nav-link :href="route('categoria.index')" :active="request()->routeIs('categoria.index')">
                 {{ __('Categorias') }}
             </x-responsive-nav-link>
         </div>

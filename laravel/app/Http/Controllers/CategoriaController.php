@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Curso;
-use App\Models\Turma;
 use Illuminate\Http\Request;
 
-class TurmaController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $turmas = Turma::all();
-        return view('turma.index')->with(['turmas'=>$turmas]);
+        $categorias = Categoria::all();
+        return view('categoria.index')->with(['categorias'=>$categorias]);
     }
 
     /**
@@ -23,7 +23,7 @@ class TurmaController extends Controller
     public function create()
     {
         $cursos = Curso::all();
-        return view('turma.create')->with(['cursos'=>$cursos]);
+        return view('categoria.create')->with(['cursos'=>$cursos]);
     }
 
     /**
@@ -32,11 +32,12 @@ class TurmaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ano'=>'required|integer|min:4',
+            'nome'=>'required|string|min:3',
+            'maximo_horas'=>'required|numeric|min:1',
             'curso_id'=>'required|exists:cursos,id',
         ]);
-        Turma::create($request->all());
-        return redirect()->route('turma.index')->with('success', 'Turma criada com sucesso!');
+        Categoria::create($request->all());
+        return redirect()->route('categoria.index')->with('success', 'Categoria criada com sucesso!');
     }
 
     /**
@@ -52,10 +53,10 @@ class TurmaController extends Controller
      */
     public function edit(string $id)
     {
-        $turma = Turma::with(['curso'])->findOrFail($id);
+        $categoria = Categoria::with(['curso'])->findOrFail($id);
         $cursos = Curso::all();
 
-        return view('turma.edit')->with(['turma'=>$turma, 'cursos'=>$cursos]);
+        return view('categoria.edit')->with(['categoria'=>$categoria, 'cursos'=>$cursos]);
     }
 
     /**
@@ -64,11 +65,12 @@ class TurmaController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'ano'=>'required|integer|min:4',
+            'nome'=>'required|string|min:3',
+            'maximo_horas'=>'required|numeric|min:1',
             'curso_id'=>'required|exists:cursos,id',
         ]);
-        Turma::findOrFail($id)->update($request->all());
-        return redirect()->route('turma.index')->with('success', 'Turma atualizada com sucesso!');
+        Categoria::findOrFail($id)->update($request->all());
+        return redirect()->route('categoria.index')->with('success', 'Categoria atualizada com sucesso!');
     }
 
     /**
@@ -76,9 +78,9 @@ class TurmaController extends Controller
      */
     public function destroy(string $id)
     {
-        $turma = Turma::findOrFail($id);
-        $turma->delete();
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete();
 
-        return redirect()->route('turma.index')->with('success', 'Turma removida com sucesso!');
+        return redirect()->route('categoria.index')->with('success', 'Categoria removida com sucesso!');
     }
 }
