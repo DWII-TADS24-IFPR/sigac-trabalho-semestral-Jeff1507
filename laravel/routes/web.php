@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EixoController;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/eixo', EixoController::class);
     Route::resource('/curso', CursoController::class);
     Route::resource('/turma', TurmaController::class);
+    Route::resource('/aluno', AlunoController::class);
     Route::resource('/categoria', CategoriaController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

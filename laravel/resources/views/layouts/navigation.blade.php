@@ -27,7 +27,7 @@
                     <x-nav-link :href="route('turma.index')" :active="request()->routeIs('turma.index')">
                         {{ __('Turmas') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                    <x-nav-link :href="route('aluno.index')" :active="request()->routeIs('aluno.index')">
                         {{ __('Alunos') }}
                     </x-nav-link>
                     <x-nav-link :href="route('categoria.index')" :active="request()->routeIs('categoria.index')">
@@ -103,7 +103,7 @@
             <x-responsive-nav-link :href="route('turma.index')" :active="request()->routeIs('turma.index')">
                 {{ __('Turmas') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+            <x-responsive-nav-link :href="route('aluno.index')" :active="request()->routeIs('aluno.index')">
                 {{ __('Alunos') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('categoria.index')" :active="request()->routeIs('categoria.index')">

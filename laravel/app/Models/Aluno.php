@@ -13,10 +13,10 @@ class Aluno extends Model
     protected $table = 'alunos';
 
     protected $fillable = [
-        'nome',
+        //'nome',
         'cpf',
-        'email',
-        'senha',
+        //'email',
+        //'senha',
         'user_id',
         'curso_id',
         'turma_id',
