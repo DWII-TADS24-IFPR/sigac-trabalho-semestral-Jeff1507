@@ -78,7 +78,7 @@ class CursoController extends Controller
             'eixo_id' => 'required|exists:eixos,id',
         ]);
 
-        $curso = Curso::findOrFail($id)->update($request->all());
+        Curso::findOrFail($id)->update($request->all());
         return redirect()->route('curso.index')->with('success', 'Curso atualizado com sucesso!');
     }
 
