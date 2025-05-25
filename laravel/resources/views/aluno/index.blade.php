@@ -58,6 +58,7 @@
                                    <x-link href="{{ route('aluno.edit', $aluno->id) }}">
                                         Editar
                                     </x-link>
+                                    <x-delete-button :action="route('aluno.destroy', $aluno->id)" modalId="delete-aluno-{{ $aluno->id }}"/>
                                 </td>
                             </tr>
                         @endforeach
