@@ -77,7 +77,11 @@ class AlunoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $aluno = Aluno::with(['user', 'curso', 'turma'])->findOrFail($id);
+        $cursos = Curso::all();
+        $turmas = Turma::all();
+
+        return view('aluno.edit')->with(['aluno'=>$aluno, 'cursos'=>$cursos, 'turmas'=>$turmas]);
     }
 
     /**
@@ -85,7 +89,32 @@ class AlunoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $aluno = Aluno::findOrFail($id);
+        $user = $aluno->user;
+
+        $request->validate([
+            'nome' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'cpf' => ['required', 'string', 'min:11'],
+            'curso_id' => ['required', 'exists:cursos,id'],
+            'turma_id' => ['required', 'exists:turmas,id'],
+        ]);
+
+        $aluno->update([
+            'cpf' => $request->cpf,
+            'curso_id' => $request->curso_id,
+            'turma_id' => $request->turma_id,
+        ]);
+
+        $user->name = $request->nome;
+        $user->email = $request->email;
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        return redirect()->route('aluno.index')->with('success', 'Aluno atualizado com sucesso!');
     }
 
     /**

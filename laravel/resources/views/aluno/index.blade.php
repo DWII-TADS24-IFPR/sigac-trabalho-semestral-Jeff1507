@@ -55,6 +55,9 @@
                                    <x-link href="{{ route('aluno.show', $aluno->id) }}" class="text-blue-300">
                                         Ver
                                    </x-link>
+                                   <x-link href="{{ route('aluno.edit', $aluno->id) }}">
+                                        Editar
+                                    </x-link>
                                 </td>
                             </tr>
                         @endforeach
