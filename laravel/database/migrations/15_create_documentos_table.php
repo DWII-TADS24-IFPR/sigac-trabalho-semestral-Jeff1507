@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->text('descricao')->nullable();
+            $table->string('descricao');
             $table->float('horas_in');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->text('comentario')->nullable();
-            $table->float('horas_out');
+            $table->float('horas_out')->default(0);
             $table->unsignedBigInteger('categoria_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('categoria_id')->references(columns: 'id')->on('categorias')->onDelete('cascade');

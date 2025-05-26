@@ -12,10 +12,11 @@ class DocumentoController extends Controller
     /**
      * Display a listing of the resource.
      */
+    private $path = "documentos/alunos";
     public function index()
     {
         $documentos = Documento::all();
-        return view('documento.index')->with(['documento'=>$documentos]);
+        return view('documento.index')->with(['documentos'=>$documentos]);
     }
 
     public function listarPorAluno () {
@@ -43,7 +44,35 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'descricao' => 'required|string|min:3',
+            'horas_in' => 'required|numeric|min:1',
+            'url' => 'required|file|mimes:pdf|max:2048',
+            'categoria_id' => 'required|exists:categorias,id',
+        ]);
+
+        $aluno = Auth::user();
+        $categoria = Categoria::findOrFail($request->categoria_id);
+
+        if ($request->hasFile('url') && $request->file('url')->isValid()) {
+
+            $extensao_arq = $request->file('url')->getClientOriginalExtension();
+            $nome_arq = $request->file('url')->getClientOriginalName().'_'.time().'.'.$extensao_arq;
+
+            $request->file('url')->storeAs("public/$this->path", $nome_arq);
+
+            $documento = new Documento();
+            $documento->descricao = mb_strtoupper($request->descricao, 'UTF-8');
+            $documento->horas_in = $request->horas_in;
+            //$documento->status = "INDEFINIDO";
+            //$documento->horas_out = 0;
+            $documento->url = $this->path."/".$nome_arq;            
+            $documento->categoria()->associate($categoria);
+            $documento->user()->associate($aluno);
+            $documento->save();
+        }
+
+        return redirect()->route('documento.index')->with('success', 'Solicitação de horas afins enviada!');
     }
 
     /**

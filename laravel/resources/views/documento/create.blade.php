@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <section class="flex items-center justify-center">
-        <form action="" method="POST" enctype="multipart/form-data" class="w-full sm:w-96 shadow-sm sm:border border-[#49454F] flex flex-col gap-8 px-6 py-4">
+        <form action="{{ route('documento.store') }}" method="POST" enctype="multipart/form-data" class="w-full sm:w-96 shadow-sm sm:border border-[#49454F] flex flex-col gap-8 px-6 py-4">
             @csrf
             <x-title>
                 Solicitar Horas Complementares
@@ -39,7 +39,7 @@
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
             <div class="w-full flex items-center justify-end gap-4">
-                <x-button type="button" variant="text">
+                <x-button type="button" variant="text" onclick="window.location.href='{{ route('documento.index') }}'">
                     Voltar
                 </x-button>
                 <x-button type="submit">
@@ -49,11 +49,11 @@
         </form>
     </section>
     <script>
-    document.getElementById('url').addEventListener('change', function (e) {
-        const fileName = e.target.files[0]?.name || 'Nenhum arquivo selecionado';
-        const label = document.getElementById('nome_documento');
-        label.textContent = fileName;
-        label.classList.remove('hidden');
-    });
+        document.getElementById('url').addEventListener('change', function (e) {
+            const fileName = e.target.files[0]?.name;
+            const label = document.getElementById('nome_documento');
+            label.textContent = fileName;
+            label.classList.remove('hidden');
+        });
     </script>
 </x-app-layout>
