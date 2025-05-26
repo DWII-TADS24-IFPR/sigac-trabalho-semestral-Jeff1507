@@ -15,28 +15,34 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Início') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
-                        {{ __('Níveis de Ensino') }}
-                    </x-nav-link>
-                    @can('hasFullPermission', App\Models\Eixo::class)
+                    @can ('hasFullPermission', App\Models\Nivel::class)
+                        <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
+                            {{ __('Níveis de Ensino') }}
+                        </x-nav-link>
+                    @endcan
+                    @can ('hasFullPermission', App\Models\Eixo::class)
                         <x-nav-link :href="route('eixo.index')" :active="request()->routeIs('eixo.index')">
                             {{ __('Eixos') }}
                         </x-nav-link>
                     @endcan
-                    <x-nav-link :href="route('curso.index')" :active="request()->routeIs('curso.index')">
-                        {{ __('Cursos') }}
-                    </x-nav-link>
+                    @can ('hasFullPermission', App\Models\Curso::class)
+                        <x-nav-link :href="route('curso.index')" :active="request()->routeIs('curso.index')">
+                            {{ __('Cursos') }}
+                        </x-nav-link>
+                    @endcan
                     <x-nav-link :href="route('turma.index')" :active="request()->routeIs('turma.index')">
                         {{ __('Turmas') }}
                     </x-nav-link>
-                    @can('hasFullPermission', App\Models\Aluno::class)
+                    @can ('hasFullPermission', App\Models\Categoria::class)
                         <x-nav-link :href="route('aluno.index')" :active="request()->routeIs('aluno.index')">
                             {{ __('Alunos') }}
                         </x-nav-link>
                     @endcan
-                    <x-nav-link :href="route('categoria.index')" :active="request()->routeIs('categoria.index')">
-                        {{ __('Categorias') }}
-                    </x-nav-link>
+                    @can ('hasFullPermission', App\Models\Aluno::class)
+                        <x-nav-link :href="route('categoria.index')" :active="request()->routeIs('categoria.index')">
+                            {{ __('Categorias') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

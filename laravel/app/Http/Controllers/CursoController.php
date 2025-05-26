@@ -14,6 +14,7 @@ class CursoController extends Controller
      */
     public function index()
     {
+        $this->authorize('hasFullPermission', Curso::class);
         $cursos = Curso::all();
         return view('curso.index')->with(['cursos'=>$cursos]);
     }
@@ -23,6 +24,7 @@ class CursoController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Curso::class);
         $niveis = Nivel::all();
         $eixos = Eixo::all();
         return view('curso.create')->with(['niveis' => $niveis, 'eixos' => $eixos]);
@@ -33,6 +35,7 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('hasFullPermission', Curso::class);
         $request->validate([
             'nome' => 'required|string|min:3',
             'sigla' => 'required|string|min:2',
@@ -49,6 +52,7 @@ class CursoController extends Controller
      */
     public function show(string $id)
     {
+        $this->authorize('hasFullPermission', Curso::class);
         $curso = Curso::with(['nivel', 'eixo'])->findOrFail($id);
         return view('curso.show')->with(['curso' => $curso]);
     }
@@ -58,6 +62,7 @@ class CursoController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('hasFullPermission', Curso::class);
         $curso = Curso::with(['nivel', 'eixo'])->findOrFail($id);
         $niveis = Nivel::all();
         $eixos = Eixo::all();
@@ -70,6 +75,7 @@ class CursoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('hasFullPermission', Curso::class);
         $request->validate([
             'nome' => 'required|string|min:3',
             'sigla' => 'required|string|min:2',
@@ -87,6 +93,7 @@ class CursoController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('hasFullPermission', Curso::class);
         $curso = Curso::findOrFail($id);
         $curso->delete();
 

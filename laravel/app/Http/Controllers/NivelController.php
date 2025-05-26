@@ -11,6 +11,7 @@ class NivelController extends Controller
      */
     public function index()
     {
+        $this->authorize('hasFullPermission', Nivel::class);
         $niveis = Nivel::all();
         return view('nivel.index')->with(['niveis'=>$niveis]);
     }
@@ -20,6 +21,7 @@ class NivelController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Nivel::class);
         return view('nivel.create');
     }
 
@@ -28,6 +30,7 @@ class NivelController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('hasFullPermission', Nivel::class);
         $request->validate(['nome'=>'required|string|min:3']);
         Nivel::create($request->all());
         return redirect()->route('nivel.index')->with('success', 'Nível criado com sucesso!');
@@ -38,7 +41,7 @@ class NivelController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Nivel::class);
     }
 
     /**
@@ -46,6 +49,7 @@ class NivelController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('hasFullPermission', Nivel::class);
         $nivel = Nivel::findOrFail($id);
         return view('nivel.edit')->with(['nivel'=>$nivel]);
     }
@@ -55,6 +59,7 @@ class NivelController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('hasFullPermission', Nivel::class);
         $request->validate(['nome'=>'required|string|min:3']);
         Nivel::findOrFail($id)->update($request->all());
         return redirect()->route('nivel.index')->with('success', 'Nível atualizado com sucesso!');
@@ -65,6 +70,7 @@ class NivelController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('hasFullPermission', Nivel::class);
         $nivel = Nivel::findOrFail($id);
         $nivel->delete();
 

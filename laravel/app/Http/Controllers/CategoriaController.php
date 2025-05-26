@@ -15,6 +15,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
+        $this->authorize('hasFullPermission', Categoria::class);
         $categorias = Categoria::all();
         return view('categoria.index')->with(['categorias'=>$categorias]);
     }
@@ -24,6 +25,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Categoria::class);
         $cursos = Curso::all();
         return view('categoria.create')->with(['cursos'=>$cursos]);
     }
@@ -33,8 +35,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $user_role = $request->user()->role_id;
-        abort_unless(Permissions::isAuthorized($user_role), 403);
+        $this->authorize('hasFullPermission', Categoria::class);
         $request->validate([
             'nome'=>'required|string|min:3',
             'maximo_horas'=>'required|numeric|min:1',
@@ -49,7 +50,7 @@ class CategoriaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Categoria::class);
     }
 
     /**
@@ -57,6 +58,7 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('hasFullPermission', Categoria::class);
         $categoria = Categoria::with(['curso'])->findOrFail($id);
         $cursos = Curso::all();
 
@@ -68,6 +70,7 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('hasFullPermission', Categoria::class);
         $request->validate([
             'nome'=>'required|string|min:3',
             'maximo_horas'=>'required|numeric|min:1',
@@ -82,6 +85,7 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('hasFullPermission', Categoria::class);
         $categoria = Categoria::findOrFail($id);
         $categoria->delete();
 
