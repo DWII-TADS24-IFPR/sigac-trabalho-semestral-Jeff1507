@@ -18,9 +18,11 @@
                     <x-nav-link :href="route('nivel.index')" :active="request()->routeIs('nivel.index')">
                         {{ __('Níveis de Ensino') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('eixo.index')" :active="request()->routeIs('eixo.index')">
-                        {{ __('Eixos') }}
-                    </x-nav-link>
+                    @can('hasFullPermission', App\Models\Eixo::class)
+                        <x-nav-link :href="route('eixo.index')" :active="request()->routeIs('eixo.index')">
+                            {{ __('Eixos') }}
+                        </x-nav-link>
+                    @endcan
                     <x-nav-link :href="route('curso.index')" :active="request()->routeIs('curso.index')">
                         {{ __('Cursos') }}
                     </x-nav-link>

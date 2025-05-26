@@ -18,7 +18,7 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        abort_unless(Permissions::isAuthorized('administrador.alunos'), 403);
+        $this->authorize('hasFullPermission', Aluno::class);
         $alunos = Aluno::all();
         return view('aluno.index')->with(['alunos'=>$alunos]);
     }

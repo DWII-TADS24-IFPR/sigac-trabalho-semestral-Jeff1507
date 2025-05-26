@@ -1,21 +1,16 @@
 <?php
 
 namespace App\Policies;
-
-use App\Facades\Permissions;
 use App\Models\User;
+use App\Facades\Permissions;
 
-class EixoPolicy
-{
-    /**
-     * Create a new policy instance.
-     */
-    public function __construct()
-    {
-        //
+class EixoPolicy {
+
+    public function __construct() {
+        
     }
-    
-    public function hasFullPermission () {
+
+    public function hasFullPermission() {
         return Permissions::isAuthorized('administrador.eixos');
     }
 }

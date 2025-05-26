@@ -4,15 +4,14 @@ namespace App\Facades;
 use App\Models\Permission;
 
 class Permissions {
-    public static function loadPermissions($user_role_id) {
+    public static function loadPermissions($user_role) {
         $arr_permissions = Array();
-        $perm = Permission::with('resource')->where('role_id', $user_role_id)->get();
+        $perm = Permission::with('resource')->where('role_id', $user_role)->get();
 
-        foreach ($perm as $item) {
+        foreach($perm as $item) {
             $arr_permissions[$item->resource->nome] = (boolean) $item->permission;
         }
         session(['user_permissions' => $arr_permissions]);
-        //dd(session('user_permissions'));
     }
 
     public static function isAuthorized($resource) {

@@ -134,6 +134,7 @@ return [
         //App\Providers\EventServiceProvider::class,
         //App\Providers\RouteServiceProvider::class,
         App\Providers\PermissionServiceProvider::class,
+
     ])->toArray(),
 
     'aliases' => Facade::defaultAliases()->merge([

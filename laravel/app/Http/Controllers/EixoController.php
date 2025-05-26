@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Facades\Permissions;
 use App\Models\Eixo;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,7 @@ class EixoController extends Controller
      */
     public function show(string $id)
     {
-        $this->authorize('hasFullPermission', Eixo::class);
+       $this->authorize('hasFullPermission', Eixo::class);
     }
 
     /**

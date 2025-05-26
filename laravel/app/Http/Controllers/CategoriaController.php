@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Permissions;
 use App\Models\Categoria;
 use App\Models\Curso;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -31,6 +33,8 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+        $user_role = $request->user()->role_id;
+        abort_unless(Permissions::isAuthorized($user_role), 403);
         $request->validate([
             'nome'=>'required|string|min:3',
             'maximo_horas'=>'required|numeric|min:1',
