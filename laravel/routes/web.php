@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EixoController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/turma', TurmaController::class);
     Route::resource('/aluno', AlunoController::class);
     Route::resource('/categoria', CategoriaController::class);
+    Route::resource('/documento', DocumentoController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
