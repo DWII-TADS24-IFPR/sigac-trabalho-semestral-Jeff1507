@@ -27,9 +27,11 @@
                     <x-nav-link :href="route('turma.index')" :active="request()->routeIs('turma.index')">
                         {{ __('Turmas') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('aluno.index')" :active="request()->routeIs('aluno.index')">
-                        {{ __('Alunos') }}
-                    </x-nav-link>
+                    @can('hasFullPermission', App\Models\Aluno::class)
+                        <x-nav-link :href="route('aluno.index')" :active="request()->routeIs('aluno.index')">
+                            {{ __('Alunos') }}
+                        </x-nav-link>
+                    @endcan
                     <x-nav-link :href="route('categoria.index')" :active="request()->routeIs('categoria.index')">
                         {{ __('Categorias') }}
                     </x-nav-link>

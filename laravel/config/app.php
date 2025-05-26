@@ -126,7 +126,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    /*'providers' => ServiceProvider::defaultProviders()->merge([
+    'providers' => ServiceProvider::defaultProviders()->merge([
     
         App\Providers\AppServiceProvider::class,
         //App\Providers\AuthServiceProvider::class,
@@ -139,6 +139,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Permissions' => App\Facades\PermissionsFacade::class,
-    ])->toArray(), */
+    ])->toArray(),
     
 ];

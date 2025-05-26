@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Permissions;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Turma;
@@ -17,6 +18,7 @@ class AlunoController extends Controller
      */
     public function index()
     {
+        abort_unless(Permissions::isAuthorized('administrador.alunos'), 403);
         $alunos = Aluno::all();
         return view('aluno.index')->with(['alunos'=>$alunos]);
     }
@@ -26,6 +28,7 @@ class AlunoController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Aluno::class);
         $cursos = Curso::all();
         $turmas = Turma::all();
 
@@ -37,6 +40,7 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('hasFullPermission', Aluno::class);
         $request->validate([
             'nome' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -68,6 +72,7 @@ class AlunoController extends Controller
      */
     public function show(string $id)
     {
+        $this->authorize('hasFullPermission', Aluno::class);
         $aluno = Aluno::with(['user', 'curso', 'turma'])->findOrFail($id);
         return view('aluno.show')->with(['aluno'=>$aluno]);
     }
@@ -77,6 +82,7 @@ class AlunoController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('hasFullPermission', Aluno::class);
         $aluno = Aluno::with(['user', 'curso', 'turma'])->findOrFail($id);
         $cursos = Curso::all();
         $turmas = Turma::all();
@@ -89,6 +95,7 @@ class AlunoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('hasFullPermission', Aluno::class);
         $aluno = Aluno::findOrFail($id);
         $user = $aluno->user;
 
@@ -122,6 +129,7 @@ class AlunoController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('hasFullPermission', Aluno::class);
         $aluno = Aluno::with(['user'])->findOrFail($id);
         $aluno->user->delete();
         $aluno->delete();

@@ -11,6 +11,7 @@ class EixoController extends Controller
      */
     public function index()
     {
+        $this->authorize('hasFullPermission', Eixo::class);
         $eixos = Eixo::all();
         return view('eixo.index')->with(['eixos'=>$eixos]);
     }
@@ -20,6 +21,7 @@ class EixoController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Eixo::class);
         return view('eixo.create');
     }
 
@@ -28,6 +30,7 @@ class EixoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('hasFullPermission', Eixo::class);
         $request->validate(['nome'=>'required|string|min:3']);
         Eixo::create($request->all());
         return redirect()->route('eixo.index')->with('success', 'Eixo criado com sucesso!');
@@ -38,7 +41,7 @@ class EixoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Eixo::class);
     }
 
     /**
@@ -46,6 +49,7 @@ class EixoController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('hasFullPermission', Eixo::class);
         $eixo = Eixo::findOrFail($id);
         return view('eixo.edit')->with(['eixo'=>$eixo]);
     }
@@ -55,6 +59,7 @@ class EixoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('hasFullPermission', Eixo::class);
         $request->validate(['nome'=>'required|string|min:3']);
         Eixo::findOrFail($id)->update($request->all());
         return redirect()->route('eixo.index')->with('success', 'Eixo atualizado com sucesso!');
@@ -65,6 +70,7 @@ class EixoController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('hasFullPermission', Eixo::class);
         $eixo = Eixo::findOrFail($id);
         $eixo->delete();
 
