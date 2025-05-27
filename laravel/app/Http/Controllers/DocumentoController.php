@@ -15,16 +15,14 @@ class DocumentoController extends Controller
     private $path = "documentos/alunos";
     public function index()
     {
-        
-        $documentos = Documento::all();
+        //$this->authorize('hasFullPermission', Documento::class);
+        $user = Auth::user();
+        if ($user->role_id == 1) {
+            return "<h1> SEM PERMISSÃO <h1/>";
+        }
+        //dd($user->id);
+        $documentos = Documento::where('user_id', $user->id)->get();
         return view('documento.index')->with(['documentos'=>$documentos]);
-    }
-
-    public function listarPorAluno () {
-        $this->authorize('hasFullPermission', Documento::class);
-        $aluno = Auth::user();
-        $documentos = $aluno->documento;
-        return view('documento.listarPorAluno')->with(['documentos'=>$documentos]);
     }
 
     /**
@@ -32,7 +30,11 @@ class DocumentoController extends Controller
      */
     public function create()
     {
-        $this->authorize('hasFullPermission', Documento::class);
+        //$this->authorize('hasFullPermission', Documento::class);
+        $user = Auth::user();
+        if ($user->role_id == 1) {
+            return "<h1> SEM PERMISSÃO <h1/>";
+        }
         $aluno_curso_id = 0;
         if (Auth::user()->aluno) {
             $aluno = Auth::user()->aluno;
@@ -47,7 +49,11 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('hasFullPermission', Documento::class);
+        //$this->authorize('hasFullPermission', Documento::class);
+        $user = Auth::user();
+        if ($user->role_id == 1) {
+            return "<h1> SEM PERMISSÃO <h1/>";
+        }
         $request->validate([
             'descricao' => 'required|string|min:3',
             'horas_in' => 'required|numeric|min:1',
@@ -84,7 +90,7 @@ class DocumentoController extends Controller
      */
     public function show(string $id)
     {
-        $this->authorize('hasFullPermission', Documento::class);
+        $this->authorize('hasAssessPermission', Documento::class);
         $documento = Documento::with(['categoria', 'user'])->findOrFail($id);
         return view('documento.show')->with(['documento'=>$documento]);
     }
@@ -120,5 +126,13 @@ class DocumentoController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function listarSolicitacoes() {
+        $documentos = Documento::all();
+        return view('documento.listarSolicitacoes')->with(['documentos'=>$documentos]);
+    }
+    public function validar() {
+        
     }
 }

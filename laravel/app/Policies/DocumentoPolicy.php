@@ -18,4 +18,8 @@ class DocumentoPolicy
     public function hasFullPermission($user) {
         return  Permissions::isAuthorized('aluno.solicitar');
     }
+
+    public function hasAssessPermission() {
+        return Permissions::isAuthorized('administrador.avaliar');
+    }
 }
