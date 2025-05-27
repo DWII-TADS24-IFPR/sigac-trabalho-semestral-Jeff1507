@@ -16,7 +16,7 @@
     </head>
     <body class="font-sans text-white antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-zinc-900">
-            <div class="w-96 rounded-lg shadow-sm border border-[#49454F] flex flex-col px-6 py-8">
+            <div class="w-[400px] rounded-lg shadow-sm border border-[#49454F] flex flex-col px-6 py-8">
                 <a href="/" class="self-center mb-8">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>

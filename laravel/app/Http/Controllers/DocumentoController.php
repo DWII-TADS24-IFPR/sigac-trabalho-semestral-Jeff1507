@@ -30,7 +30,7 @@ class DocumentoController extends Controller
      */
     public function create()
     {
-        //$this->authorize('hasFullPermission', Documento::class);
+        $this->authorize('hasFullPermission', Documento::class);
         $user = Auth::user();
         /*if ($user->role_id == 1) {
             return "<h1> SEM PERMISSÃO <h1/>";
@@ -49,7 +49,7 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //$this->authorize('hasFullPermission', Documento::class);
+        $this->authorize('hasFullPermission', Documento::class);
         //$user = Auth::user();
         /*if ($user->role_id == 1) {
             return "<h1> SEM PERMISSÃO <h1/>";

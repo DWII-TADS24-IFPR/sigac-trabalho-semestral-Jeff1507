@@ -14,20 +14,24 @@ class ResourceSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            // ADMINISTRADOR
+            // MENU ADMINISTRADOR   ----------------------------
             ["nome" => "administrador"],                    // 1
-            ["nome" => "administrador.eixos"],              // 2
-            ["nome" => "administrador.niveis"],             // 3
-            ["nome" => "administrador.cursos"],             // 4
-            ["nome" => "administrador.turmas"],             // 5
-            ["nome" => "administrador.alunos"],             // 6
+            ["nome" => "administrador.cursos"],             // 2
+            ["nome" => "administrador.eixos"],              // 3
+            ["nome" => "administrador.niveis"],             // 4
+            ["nome" => "administrador.alunos"],             // 5
+            ["nome" => "administrador.avaliar"],            // 6
             ["nome" => "administrador.categorias"],         // 7
-            ["nome" => "administrador.avaliar"],            // 8
-            ["nome" => "administrador.graficos.alunos"],    // 9
-            // ALUNO
-            ["nome" => "aluno"],                            // 10
-            ["nome" => "aluno.solicitar"],                  // 11
-            ["nome" => "aluno.gerar"],                      // 12
+            ["nome" => "administrador.graficos.alunos"],    // 8
+            ["nome" => "administrador.graficos.horas"],     // 9
+            ["nome" => "administrador.relatorio"],          // 10
+            ["nome" => "administrador.turmas"],             // 11
+            ["nome" => "administrador.validar"],            // 12
+            ["nome" => "administrador.cadastrar"],          // 13
+            // MENU ALUNO           -----------------------------
+            ["nome" => "aluno"],                            // 14
+            ["nome" => "aluno.solicitar"],                  // 15
+            ["nome" => "aluno.gerar"],                      // 16
         ];
         DB::table('resources')->insert($data);
     }

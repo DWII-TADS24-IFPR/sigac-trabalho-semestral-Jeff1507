@@ -30,9 +30,11 @@
                             {{ __('Cursos') }}
                         </x-nav-link>
                     @endcan
-                    <x-nav-link :href="route('turma.index')" :active="request()->routeIs('turma.index')">
-                        {{ __('Turmas') }}
-                    </x-nav-link>
+                    @can ('hasFullPermission', App\Models\Turma::class)
+                        <x-nav-link :href="route('turma.index')" :active="request()->routeIs('turma.index')">
+                            {{ __('Turmas') }}
+                        </x-nav-link>
+                    @endcan
                     @can ('hasFullPermission', App\Models\Categoria::class)
                         <x-nav-link :href="route('aluno.index')" :active="request()->routeIs('aluno.index')">
                             {{ __('Alunos') }}
@@ -43,9 +45,14 @@
                             {{ __('Categorias') }}
                         </x-nav-link>
                     @endcan
+                    @can ('hasAssessPermission', App\Models\Documento::class)
+                        <x-nav-link :href="route('documento.solicitacoes')" :active="request()->routeIs('documento.solicitacoes')">
+                            {{ __('Solicitações') }}
+                        </x-nav-link>
+                    @endcan
                     @can ('hasFullPermission', App\Models\Documento::class)
                         <x-nav-link :href="route('documento.index')" :active="request()->routeIs('documento.index')">
-                            {{ __('Solicitações') }}
+                            {{ __('Horas Complementares') }}
                         </x-nav-link>
                     @endcan
                 </div>

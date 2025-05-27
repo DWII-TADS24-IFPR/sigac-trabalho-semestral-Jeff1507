@@ -13,6 +13,7 @@ class TurmaController extends Controller
      */
     public function index()
     {
+        $this->authorize('hasFullPermission', Turma::class);
         $turmas = Turma::all();
         return view('turma.index')->with(['turmas'=>$turmas]);
     }
@@ -22,6 +23,7 @@ class TurmaController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Turma::class);
         $cursos = Curso::all();
         return view('turma.create')->with(['cursos'=>$cursos]);
     }
@@ -31,6 +33,7 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('hasFullPermission', Turma::class);
         $request->validate([
             'ano'=>'required|integer|min:4',
             'curso_id'=>'required|exists:cursos,id',
@@ -44,7 +47,7 @@ class TurmaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Turma::class);
     }
 
     /**
@@ -52,6 +55,7 @@ class TurmaController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('hasFullPermission', Turma::class);
         $turma = Turma::with(['curso'])->findOrFail($id);
         $cursos = Curso::all();
 
@@ -63,6 +67,7 @@ class TurmaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('hasFullPermission', Turma::class);
         $request->validate([
             'ano'=>'required|integer|min:4',
             'curso_id'=>'required|exists:cursos,id',
@@ -76,6 +81,7 @@ class TurmaController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('hasFullPermission', Turma::class);
         $turma = Turma::findOrFail($id);
         $turma->delete();
 
