@@ -102,7 +102,10 @@ class DocumentoController extends Controller
     {
         $this->authorize('hasFullPermission', Documento::class);
         $documento = Documento::with(['categoria'])->findOrFail($id);
-        if (Auth::user()->id != $documento->user_id) {
+        // Se o user_id da conta logada n for o mesmo do user_id do documento
+        // Ou se o status do documento n estiver null
+        // Retorna um erro
+        if ((Auth::user()->id != $documento->user_id) || !$documento->status == null) {
             return "<h1> SEM AUTORIZAÇÃO! <h1/>";
         }
         $aluno_curso_id = 0;
@@ -121,11 +124,37 @@ class DocumentoController extends Controller
     public function update(Request $request, string $id)
     {
         $this->authorize('hasFullPermission', Documento::class);
+        $user = Auth::user();
         $documento = Documento::with(['categoria'])->findOrFail($id);
-        if (Auth::user()->id != $documento->user_id) {
+        
+        // Se o user_id da conta logada n for o mesmo do user_id do documento
+        // Ou se o status do documento n estiver null
+        // Retorna um erro
+        if (($user->id != $documento->user_id) || !$documento->status == null) {
             return "<h1> SEM AUTORIZAÇÃO! <h1/>";
         }
-        
+
+        $request->validate([
+            'descricao' => 'required|string|min:3',
+            'horas_in' => 'required|numeric|min:1',
+            'url' => 'required|file|mimes:pdf|max:2048',
+            'categoria_id' => 'required|exists:categorias,id',
+        ]);
+        $categoria = Categoria::findOrFail($request->categoria_id);
+        if ($request->hasFile('url') && $request->file('url')->isValid()) {
+            $documento->descricao = mb_strtoupper($request->descricao, 'UTF-8');
+            $documento->horas_in = $request->horas_in;
+            $documento->categoria()->associate($categoria);
+            
+            $extensao_arq = $request->file('url')->getClientOriginalExtension();
+            $nome_arq = $request->file('url')->getClientOriginalName().'_'.time().'.'.$extensao_arq;
+            
+            $request->file('url')->storeAs("public/$this->path", $nome_arq);
+
+            $documento->url = $this->path."/".$nome_arq;
+            $documento->save();
+        }
+        return redirect()->route('documento.index')->with('success', 'Solicitação atualizada com sucesso!');
     }
 
     /**

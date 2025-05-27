@@ -6,7 +6,7 @@
     </x-slot>
 
     <section class="flex items-center justify-center">
-        <form action="" method="POST" enctype="multipart/form-data" class="w-full sm:w-96 shadow-sm sm:border border-[#49454F] flex flex-col gap-8 px-6 py-4">
+        <form action="{{ route('documento.update', $documento->id) }}" method="POST" enctype="multipart/form-data" class="w-full sm:w-96 shadow-sm sm:border border-[#49454F] flex flex-col gap-8 px-6 py-4">
             @csrf
             @method('PUT')
 

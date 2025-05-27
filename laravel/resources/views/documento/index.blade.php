@@ -68,7 +68,7 @@
                                     </a>
                                 </td>-->
                                 <td class="px-6 py-4 inline-flex items-center gap-8">
-                                    <x-link>
+                                    <x-link href="{{ route('documento.edit', $documento->id) }}">
                                         Editar
                                     </x-link>
                                     <x-link>
