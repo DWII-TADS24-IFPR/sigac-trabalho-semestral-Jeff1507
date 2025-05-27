@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ComprovanteController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EixoController;
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/aluno', AlunoController::class);
     Route::resource('/categoria', CategoriaController::class);
     Route::resource('/documento', DocumentoController::class);
+    Route::resource('/comprovante', ComprovanteController::class);
     Route::get('/solicitacoes', [DocumentoController::class, 'listarSolicitacoes'])->name('documento.solicitacoes');
     Route::get('/solicitacoes/{id}/validar', [DocumentoController::class, 'validar'])->name('documento.validar');
     Route::put('/solicitacoes/{id}/validar', [DocumentoController::class, 'finish'])->name('documento.finish');
