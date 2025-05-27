@@ -68,7 +68,7 @@
                                     </a>
                                 </td>-->
                                 <td class="px-6 py-4 inline-flex items-center gap-8">
-                                    <x-link class="text-blue-300">
+                                    <x-link class="text-blue-300" href="{{ route('documento.show', $documento->id) }}">
                                         Ver
                                     </x-link>
                                     <x-link class="text-green-300">

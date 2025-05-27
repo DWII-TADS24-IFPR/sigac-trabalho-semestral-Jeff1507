@@ -80,7 +80,8 @@ class DocumentoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $documento = Documento::with(['categoria', 'user'])->findOrFail($id);
+        return view('documento.show')->with(['documento'=>$documento]);
     }
 
     /**
