@@ -51,9 +51,10 @@
                                     <x-link class="text-blue-300" href="{{ route('comprovante.show', $comprovante->id) }}">
                                         Ver
                                     </x-link>
-                                    <x-link>
+                                    <x-link href="{{ route('comprovante.edit', $comprovante->id) }}">
                                         Editar
                                     </x-link>
+                                    <x-delete-button :action="route('comprovante.destroy', $comprovante->id)" modalId="delete-comprovante-{{ $comprovante->id }}"/>
                                 </td>
                             </tr>
                         @endforeach

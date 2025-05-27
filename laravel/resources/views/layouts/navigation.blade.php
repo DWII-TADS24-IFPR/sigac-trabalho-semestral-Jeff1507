@@ -45,6 +45,11 @@
                             {{ __('Categorias') }}
                         </x-nav-link>
                     @endcan
+                    @can ('hasFullPermission', App\Models\Comprovante::class)
+                        <x-nav-link :href="route('comprovante.index')" :active="request()->routeIs('comprovante.index')">
+                            {{ __('Comprovantes') }}
+                        </x-nav-link>
+                    @endcan
                     @can ('hasAssessPermission', App\Models\Documento::class)
                         <x-nav-link :href="route('documento.solicitacoes')" :active="request()->routeIs('documento.solicitacoes')">
                             {{ __('Solicitações') }}

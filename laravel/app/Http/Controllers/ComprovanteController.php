@@ -16,6 +16,7 @@ class ComprovanteController extends Controller
      */
     public function index()
     {
+        $this->authorize('hasFullPermission', Comprovante::class);
         $comprovantes = Comprovante::all();
         return view('comprovante.index')->with(['comprovantes'=>$comprovantes]);
     }
@@ -25,6 +26,7 @@ class ComprovanteController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Comprovante::class);
         $categorias = Categoria::all();
         $alunos = Aluno::all();
 
@@ -36,6 +38,7 @@ class ComprovanteController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('hasFullPermission', Comprovante::class);
         $request->validate([
             'atividade'=>'required|string|min:3',
             'horas'=>'required|numeric|min:1',
@@ -53,6 +56,7 @@ class ComprovanteController extends Controller
      */
     public function show(string $id)
     {
+        $this->authorize('hasFullPermission', Comprovante::class);
         $comprovante = Comprovante::with(['categoria', 'aluno'])->findOrFail($id);
         return view('comprovante.show')->with(['comprovante'=>$comprovante]);
     }
@@ -62,7 +66,12 @@ class ComprovanteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Comprovante::class);
+        $comprovante = Comprovante::with(['categoria', 'aluno'])->findOrFail($id);
+        $categorias = Categoria::all();
+        $alunos = Aluno::all();
+
+        return view('comprovante.edit')->with(['comprovante'=>$comprovante, 'categorias'=>$categorias, 'alunos'=>$alunos]);
     }
 
     /**
@@ -70,7 +79,16 @@ class ComprovanteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Comprovante::class);
+        $request->validate([
+            'atividade'=>'required|string|min:3',
+            'horas'=>'required|numeric|min:1',
+            'categoria_id'=>'required|exists:categorias,id',
+            'aluno_id'=>'required|exists:alunos,id',
+        ]);
+        
+        Comprovante::findOrFail($id)->update($request->all());
+        return redirect()->route('comprovante.index')->with('success',  'Comprovante atualizado com sucesso!');
     }
 
     /**
@@ -78,6 +96,10 @@ class ComprovanteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Comprovante::class);
+        $comprovante = Comprovante::findOrFail($id);
+        $comprovante->delete();
+
+        return redirect()->route('comprovante.index')->with('success', 'Comprovante removido  com sucesso!');
     }
 }
