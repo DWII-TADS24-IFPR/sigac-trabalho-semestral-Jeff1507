@@ -163,6 +163,15 @@ class DocumentoController extends Controller
     public function destroy(string $id)
     {
         $this->authorize('hasFullPermission', Documento::class);
+        $documento = Documento::findOrFail($id);
+        // Se o documento foi aceito ou rejeitado pelo adm
+        // Ele n pode ser excluido
+        if (!$documento->status == null) {
+            return "<h1> SEM AUTORIZAÇÃO! <h1/>";
+        }
+
+        $documento->delete();
+        return redirect()->route('documento.index')->with('success', 'Solicitação removida com sucesso!');
     }
 
     public function listarSolicitacoes() {

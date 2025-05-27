@@ -4,12 +4,18 @@
         @if ($documentos->isEmpty())
             <x-not-found>
                 Nenhuma solicitação registrada!
+                <x-button onclick="window.location.href='{{ route('documento.create') }}'">
+                    Registrar nova solicitação
+                </x-button>
             </x-not-found>
         @else
             <div class="flex items-center justify-between">
                 <x-title>
                     Solicitações de Horas Complementares
                 </x-title>
+                <x-button onclick="window.location.href='{{ route('documento.create') }}'">
+                    Registrar solicitação
+                </x-button>
             </div>
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-zinc-300 border border-gray-500">
@@ -71,20 +77,22 @@
                                     <x-link href="{{ route('documento.edit', $documento->id) }}">
                                         Editar
                                     </x-link>
-                                    <x-link>
-                                        Remover
-                                    </x-link>
-                                    <!--
-                                    <x-link class="text-green-300">
-                                        Validar
-                                    </x-link>
-                                    -->
+                                    <x-delete-button :action="route('documento.destroy', $documento->id)" modalId="delete-documento-{{ $documento->id }}"/>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+        @endif
+        @if (session('success'))
+            <x-alert type="success">
+                {{ session('success') }}
+            </x-alert>
+        @elseif (session('error'))
+            <x-alert type="error">
+                {{ session('error') }}
+            </x-alert>
         @endif
     </section>
 </x-app-layout>
