@@ -15,11 +15,13 @@ class DocumentoController extends Controller
     private $path = "documentos/alunos";
     public function index()
     {
+        
         $documentos = Documento::all();
         return view('documento.index')->with(['documentos'=>$documentos]);
     }
 
     public function listarPorAluno () {
+        $this->authorize('hasFullPermission', Documento::class);
         $aluno = Auth::user();
         $documentos = $aluno->documento;
         return view('documento.listarPorAluno')->with(['documentos'=>$documentos]);
@@ -30,6 +32,7 @@ class DocumentoController extends Controller
      */
     public function create()
     {
+        $this->authorize('hasFullPermission', Documento::class);
         $aluno_curso_id = 0;
         if (Auth::user()->aluno) {
             $aluno = Auth::user()->aluno;
@@ -44,6 +47,7 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('hasFullPermission', Documento::class);
         $request->validate([
             'descricao' => 'required|string|min:3',
             'horas_in' => 'required|numeric|min:1',
@@ -80,6 +84,7 @@ class DocumentoController extends Controller
      */
     public function show(string $id)
     {
+        $this->authorize('hasFullPermission', Documento::class);
         $documento = Documento::with(['categoria', 'user'])->findOrFail($id);
         return view('documento.show')->with(['documento'=>$documento]);
     }
@@ -89,7 +94,16 @@ class DocumentoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $this->authorize('hasFullPermission', Documento::class);
+        $documento = Documento::with(['categoria'])->findOrFail($id);
+        $aluno_curso_id = 0;
+        if (Auth::user()->aluno) {
+            $aluno = Auth::user()->aluno;
+            $aluno_curso_id = $aluno->curso_id;      
+        }
+        $categorias = Categoria::where('curso_id', $aluno_curso_id)->get();
+
+        return view('documento.edit')->with(['documento'=>$documento, 'categorias'=>$categorias]);
     }
 
     /**
