@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/aluno', AlunoController::class);
     Route::resource('/categoria', CategoriaController::class);
     Route::resource('/documento', DocumentoController::class);
+    Route::get('/solicitacoes', [DocumentoController::class, 'listarSolicitacoes'])->name('documento.solicitacoes');
+    Route::get('/solicitacoes/{id}/validar', [DocumentoController::class, 'validar'])->name('documento.validar');
+    Route::put('/solicitacoes/{id}/validar', [DocumentoController::class, 'finish'])->name('documento.finish');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

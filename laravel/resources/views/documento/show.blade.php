@@ -87,9 +87,6 @@
                         Ver Documento (PDF)
                     </x-button>
                 </a>
-                <x-button class="w-full sm:w-auto">
-                    Validar
-                </x-button>
             </div>
         </div>
     </section>

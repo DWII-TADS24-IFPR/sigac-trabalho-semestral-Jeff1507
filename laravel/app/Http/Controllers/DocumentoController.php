@@ -176,10 +176,35 @@ class DocumentoController extends Controller
 
     public function listarSolicitacoes() {
         $this->authorize('hasAssessPermission', Documento::class);
-        $documentos = Documento::all();
-        return view('documento.listarSolicitacoes')->with(['documentos'=>$documentos]);
+        $documentos = Documento::where('status', null)->get();
+        return view('documento.solicitacoes')->with(['documentos'=>$documentos]);
     }
-    public function validar() {
+    public function validar(String $id) {
         $this->authorize('hasAssessPermission', Documento::class);
+        $documento = Documento::with(['categoria', 'user'])->findOrFail($id);
+        return view('documento.validar')->with(['documento'=>$documento]);
+    }
+    public function finish(Request $request, String $id) {
+        $this->authorize('hasAssessPermission', Documento::class);
+
+        $request->validate([
+            'status' => 'required|in:ACEITO,REJEITADO',
+            'comentario' => 'nullable|string|max:1000',
+        ]);
+
+        $documento = Documento::findOrFail($id);
+
+        $documento->status = $request->status;
+        $documento->comentario = $request->comentario;
+
+        if ($request->status === 'ACEITO') {
+            $documento->horas_out = $documento->horas_in;
+        } else {
+            $documento->horas_out = 0;
+        }
+
+        $documento->save();
+
+        return redirect()->route('documento.solicitacoes')->with('success', 'Solicitação validada com sucesso!');
     }
 }
