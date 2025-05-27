@@ -90,8 +90,11 @@ class DocumentoController extends Controller
      */
     public function show(string $id)
     {
-        $this->authorize('hasAssessPermission', Documento::class);
+        $this->authorize('hasFullPermission', Documento::class);
         $documento = Documento::with(['categoria', 'user'])->findOrFail($id);
+        if ((Auth::user()->id != $documento->user_id)) {
+            return "<h1> SEM AUTORIZAÇÃO! <h1/>";
+        }
         return view('documento.show')->with(['documento'=>$documento]);
     }
 

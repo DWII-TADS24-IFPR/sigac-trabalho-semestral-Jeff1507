@@ -43,6 +43,11 @@
                             {{ __('Categorias') }}
                         </x-nav-link>
                     @endcan
+                    @can ('hasFullPermission', App\Models\Documento::class)
+                        <x-nav-link :href="route('documento.index')" :active="request()->routeIs('documento.index')">
+                            {{ __('Solicitações') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
