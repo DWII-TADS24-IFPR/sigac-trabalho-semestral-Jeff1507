@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        Permissions::loadPermissions(Auth::user()->role_id);
+        //Permissions::loadPermissions(Auth::user()->role_id);
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

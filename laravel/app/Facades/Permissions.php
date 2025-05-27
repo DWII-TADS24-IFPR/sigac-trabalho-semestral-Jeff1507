@@ -15,7 +15,7 @@ class Permissions {
     }
 
     public static function isAuthorized($resource) {
-        if (!session()->has('user_permissions')) return false;
+        //if (!session()->has('user_permissions')) return false;
         $permissions = session('user_permissions');
         return array_key_exists($resource, $permissions);
     }
