@@ -87,4 +87,27 @@ class TurmaController extends Controller
 
         return redirect()->route('turma.index')->with('success', 'Turma removida com sucesso!');
     }
+
+    public function graficoPorTurma(String $id)
+    {
+        $turma = Turma::with(['aluno.user'])->findOrFail($id);
+
+        $dados = [];
+
+        foreach ($turma->aluno as $aluno) {
+            $nome = $aluno->user->name;
+
+            $horas_comprovantes = $aluno->comprovante()->sum('horas');
+
+            $horas_documentos = $aluno->user->documento()
+                ->where('status', 'ACEITO')
+                ->sum('horas_out');
+
+            $total_horas = $horas_comprovantes + $horas_documentos;
+
+            $dados[] = [$nome, $total_horas];
+        }
+
+        return view('grafico.turma', compact('turma', 'dados'));
+    }
 }

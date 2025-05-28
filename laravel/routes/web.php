@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/solicitacoes/{id}/validar', [DocumentoController::class, 'finish'])->name('documento.finish');
     Route::get('/comprovantes/{id}/declaracao', [DeclaracaoController::class, 'declaracaoComprovante'])->name('comprovantes.declaracao');
     Route::get('/declaracao/aluno/{id}', [DeclaracaoController::class, 'declaracaoAluno'])->name('declaracao.aluno');
+    Route::get('/grafico/turma/{id}', [TurmaController::class, 'graficoPorTurma'])->name('grafico.turma');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
