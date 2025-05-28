@@ -54,10 +54,15 @@
                     </p>
                 </div>
             </div>
-            <div class="flex items-center justify-start">
+            <div class="flex items-center justify-start gap-4">
                 <x-button variant="outlined" onclick="window.location.href='{{ route('comprovante.index') }}'">
                     Voltar
                 </x-button>
+                <a href="{{ route('comprovantes.declaracao', $comprovante->id) }}" target="_blank" class="btn btn-primary">
+                    <x-button>
+                        Gerar Declaração (PDF)
+                    </x-button>
+                </a>
             </div>
         </div>
     </section>

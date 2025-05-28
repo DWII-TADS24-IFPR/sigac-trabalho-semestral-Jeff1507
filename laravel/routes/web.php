@@ -4,6 +4,7 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ComprovanteController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\DeclaracaoController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EixoController;
 use App\Http\Controllers\NivelController;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/solicitacoes', [DocumentoController::class, 'listarSolicitacoes'])->name('documento.solicitacoes');
     Route::get('/solicitacoes/{id}/validar', [DocumentoController::class, 'validar'])->name('documento.validar');
     Route::put('/solicitacoes/{id}/validar', [DocumentoController::class, 'finish'])->name('documento.finish');
+    Route::get('/comprovantes/{id}/declaracao', [DeclaracaoController::class, 'declaracaoComprovante'])->name('comprovantes.declaracao');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

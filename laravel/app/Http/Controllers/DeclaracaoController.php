@@ -1,64 +1,27 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\Comprovante;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 
 class DeclaracaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function declaracaoComprovante(string $id)
     {
-        //
-    }
+        $comprovante = Comprovante::with(['categoria', 'aluno.user'])->findOrFail($id);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        // Gera o HTML a partir da view Blade
+        $html = View::make('declaracao.comprovante', compact('comprovante'))->render();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Instância do Dompdf
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Faz o download do PDF
+        return $dompdf->stream('declaracao-comprovante.pdf', ['Attachment'=>false]);
     }
 }
