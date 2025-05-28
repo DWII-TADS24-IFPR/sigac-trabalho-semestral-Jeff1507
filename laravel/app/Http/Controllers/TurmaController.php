@@ -90,6 +90,7 @@ class TurmaController extends Controller
 
     public function graficoPorTurma(String $id)
     {
+        $this->authorize('hasClassGraphPermission', Turma::class);
         $turma = Turma::with(['aluno.user'])->findOrFail($id);
 
         $dados = [];

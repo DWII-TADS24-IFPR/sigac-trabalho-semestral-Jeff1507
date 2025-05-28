@@ -6,9 +6,6 @@
     <div class="p-4">
         <div id="chart_div" style="width: 100%; height: 500px;"></div>
     </div>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script>
         google.charts.load('current', {packages: ['corechart', 'bar']});
         google.charts.setOnLoadCallback(drawChart);
