@@ -28,5 +28,10 @@
 
         <br><br>
         <p>Emitido em {{ now()->format('d/m/Y') }}.</p>
+
+        <br><br><br>
+        <p style="text-align: center;">
+            Responsável: <strong>{{ $comprovante->user->name }}</strong>
+        </p>
     </body>
 </html>

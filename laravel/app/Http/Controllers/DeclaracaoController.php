@@ -12,16 +12,29 @@ class DeclaracaoController extends Controller
     {
         $comprovante = Comprovante::with(['categoria', 'aluno.user'])->findOrFail($id);
 
-        // Gera o HTML a partir da view Blade
         $html = View::make('declaracao.comprovante', compact('comprovante'))->render();
 
-        // Instância do Dompdf
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
 
-        // Faz o download do PDF
         return $dompdf->stream('declaracao-comprovante.pdf', ['Attachment'=>false]);
+    }
+
+    public function declaracaoAluno(String $id) {
+
+        $total_horas = Comprovante::where('aluno_id', $id)->sum('horas');
+
+        $html = View::make('declaracao.aluno',[
+            'total_horas'=>$total_horas,
+        ])->render();
+
+        $dompdf = new Dompdf(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        return $dompdf->stream('declaracao-horas-afins.pdf', ['Attachment' => false]);
     }
 }
