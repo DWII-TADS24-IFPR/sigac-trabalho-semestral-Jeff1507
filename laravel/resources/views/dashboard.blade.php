@@ -7,8 +7,32 @@
 
     <div class="max-w-7xl mx-auto space-y-6">
         <x-title>
-            Bem Vindo <span class="text-[#D0BCFF]">{{ Auth::user()->name }}</span> 👋
+            Olá, {{ Auth::user()->name }}! 👋
         </x-title>
-        
+        <div class="w-full flex gap-8">
+            @can('isStudent', App\Models\Role::class)
+                <div class="flex-1 bg-zinc-800 p-4">
+                    Grafico
+                </div>
+                <div class="w-56 space-y-8">
+                    <div class="w-full h-48 bg-zinc-800 p-4 flex flex-col">
+                        <h3 class="text-lg font-semibold text-zinc-200">
+                            Horas Complementares
+                        </h3>
+                        <p>
+                            {{ Auth::user()->aluno->cpf }}
+                        </p>
+                    </div>
+                    <div class="w-full h-48 bg-zinc-800 p-4 flex flex-col">
+                        <h3 class="text-lg font-semibold text-zinc-200">
+                            Solicitar Horas
+                        </h3>
+                        <x-button>
+                            Solicitar Horas
+                        </x-button>
+                    </div>
+                </div>
+            @endcan
+        </div>
     </div>
 </x-app-layout>
