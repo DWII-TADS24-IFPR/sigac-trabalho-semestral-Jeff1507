@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Facades\Permissions;
 use App\Models\Aluno;
+use App\Models\Comprovante;
 use App\Models\Curso;
+use App\Models\Documento;
 use App\Models\Turma;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -135,5 +137,19 @@ class AlunoController extends Controller
         $aluno->delete();
 
         return redirect()->route('aluno.index')->with('success', 'Aluno excluido com sucesso!');
+    }
+
+    public function gerarDeclaracao(String $id) {
+        
+    }
+    private function getTotalHorasAluno($alunoId, $userId): float
+    {
+        $horasComprovantes = Comprovante::where('aluno_id', $alunoId)->sum('horas');
+
+        $horasDocumentos = Documento::where('user_id', $userId)
+            ->where('status', 'aprovado')
+            ->sum('horas_out');
+
+        return $horasComprovantes + $horasDocumentos;
     }
 }

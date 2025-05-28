@@ -19,9 +19,11 @@
                         <h3 class="text-lg font-semibold text-zinc-200">
                             Horas Complementares
                         </h3>
-                        <p>
-                            {{ Auth::user()->aluno->cpf }}
-                        </p>
+                        <a href="{{ route('declaracao.aluno', Auth::user()->aluno->id) }}" target="_blank">
+                            <x-button>
+                                Gera declaracao
+                            </x-button>
+                        </a>
                     </div>
                     <div class="w-full h-48 bg-zinc-800 p-4 flex flex-col">
                         <h3 class="text-lg font-semibold text-zinc-200">

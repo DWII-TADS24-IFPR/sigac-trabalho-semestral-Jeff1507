@@ -16,24 +16,15 @@
 
     <div class="content">
         <p>
-            Declaramos para os devidos fins que <strong>{{ $comprovante->aluno->nome }}</strong>, portador do CPF 
-            <strong>{{ $comprovante->aluno->cpf }}</strong>, regularmente matriculado no curso de 
-            <strong>{{ $comprovante->aluno->turma->curso->nome }}</strong>, cumpriu 
+            Declaramos para os devidos fins que <strong>{{ $aluno->user->name }}</strong>, regularmente matriculado no curso de 
+            <strong>{{ $aluno->curso->nome }}</strong>, cumpriu 
             <strong>{{ $totalHoras }} horas</strong> de atividades complementares, conforme regulamentação do curso.
         </p>
 
         <p>
-            Esta declaração é emitida com base nos comprovantes válidos inseridos no sistema.
+            Esta declaração é emitida com base nos comprovantes e documentos aprovados inseridos no sistema.
         </p>
 
-        <p style="margin-top: 50px;">
-            Local e data: _______________________________
-        </p>
-
-        <p style="margin-top: 50px;">
-            ___________________________________________<br>
-            Assinatura do Coordenador
-        </p>
     </div>
 </body>
 </html>
